@@ -1,8 +1,8 @@
 ﻿namespace FAQsApp.Models
 {
-    public class Category
+    public class Topic
     {
-        public string CategoryId { get; set; }
+        public string TopicId { get; set; }
         public string Name { get; set; }
     }
 }

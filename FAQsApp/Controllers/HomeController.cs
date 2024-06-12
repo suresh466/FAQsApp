@@ -27,8 +27,8 @@ namespace FAQsApp.Controllers
             List<Category> categories = context.Categories.ToList();
             List<Topic> topics = context.Topics.ToList();
 
-            ViewBag.categories = categories;
-            ViewBag.topics = topics;
+            ViewBag.Categories = categories;
+            ViewBag.Topics = topics;
 
             IQueryable<Faq> query = context.Faqs;
             if (activeCategory != "all")

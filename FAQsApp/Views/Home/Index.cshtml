@@ -1,8 +1,93 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Faq>
+
+@{
+    ViewData["Title"] = "Faqs - Home";
+
+    string Active(string filter, string selected)
+    {
+        return (filter.ToLower() == selected.ToLower()) ? "active" : "";
+    }
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<!-- Jumbotron is depreciated in newer versions of bootstrap so just imitated jumbotron using other bootstrap classes-->
+<!-- Didn't downgrade the bootstrap version as per professors answer that I got via mail -->
+<div class="jumbotron bg-info">
+    <h1 class="text-white text-center">Frequently Asked Questions</h1>
+</div>
+
+<div class="row">
+    <!-- Bootstrap list for categories -->
+    <div class="col-md-3 mt-5">
+        <div class="list-group mt-2">
+            <!-- We're looping through each category and creating a link for it -->
+            @foreach (Category category in ViewBag.Categories)
+            {
+                <a asp-controller="Home"
+                   aps-action="Index"
+                   asp-route-activeCategory="@category.CategoryId"
+                   asp-route-activeTopic="@ViewBag.ActiveTopic"
+                   class="list-group-item">
+                    @category.Name
+                </a>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="row">
+            <!-- Giving 12 col to each element makes sure they takeup all available space, resulting in stacked elements-->
+            <div class="col-md-12">
+                @* Bootstrap navbar for topics *@
+                <nav class="navbar navbar-expand navbar-light">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            @* We're creating a link for all FAQs with category and topic set as all *@
+                            @* category and topic are equal i.e all set active class *@
+                            <li class="nav-item">
+                                <a asp-asp-controller="Home"
+                                   asp-action="Index"
+                                   asp-route-activeCategory="all"
+                                   asp-route-activeTopic="all"
+                                   class="nav-link @Active(ViewBag.ActiveCategory, ViewBag.ActiveTopic)">
+                                    All FAQs
+                                </a>
+                            </li>
+                            <!-- We're looping through each topic and creating a link for it just like categories -->
+                            @foreach (var topic in ViewBag.Topics)
+                            {
+                                <li class="nav-item">
+                                    <a asp-asp-controller="Home"
+                                       asp-action="Index"
+                                       asp-route-activeCategory="@ViewBag.ActiveCategory"
+                                       asp-route-activeTopic="@topic.TopicId"
+                                       class="nav-link @Active(topic.TopicId, ViewBag.ActiveTopic)">
+                                        @topic.Name
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Questions are shown here in a card-->
+            <div class="col-md-12">
+                <!-- We're looping through each question and displaying it in a card -->
+                @foreach (Faq faq in Model)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@faq.Question</h5>
+                            <p class="card-text">@faq.Answer</p>
+                            <div class="d-flex justify-content-between">
+                                <span>Topic: @faq.Topic.Name</span>
+                                <span>Category: @faq.Category.Name</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>

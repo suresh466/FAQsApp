@@ -2,16 +2,20 @@
 
 namespace FAQsApp.Models
 {
+    // DbContext class for the FAQs database
     public class FaqContext : DbContext
     {
+        // Constructor to pass default options to the base class
         public FaqContext(DbContextOptions<FaqContext> options)
             : base(options)
         { }
 
+        // DbSet properties for the Faq, Category, and Topic models so CRUD operations can be performed
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Topic> Topics { get; set; }
 
+        // Override the OnModelCreating method to seed data for the Categories, Topics, and FAQs tables
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -9,6 +9,7 @@ namespace FAQsApp.Models
         public int Id { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
+        // implicitly set foreign relationship by referencing the models; convention in EF
         public Category Category { get; set; }
         public Topic Topic { get; set; }
     }

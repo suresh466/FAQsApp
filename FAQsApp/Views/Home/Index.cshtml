@@ -1,17 +1,16 @@
-﻿@model IEnumerable<Faq>
+﻿@* set expected type of model *@
+@model IEnumerable<Faq>
 
 @{
     ViewData["Title"] = "Faqs - Home";
 
+    @* function to set active class for links *@
     string Active(string filter, string selected)
     {
         return (filter.ToLower() == selected.ToLower()) ? "active" : "";
     }
 }
 
-
-<!-- Jumbotron is depreciated in newer versions of bootstrap so just imitated jumbotron using other bootstrap classes-->
-<!-- Didn't downgrade the bootstrap version as per professors answer that I got via mail -->
 <div class="jumbotron bg-info">
     <h1 class="text-white text-center">Frequently Asked Questions</h1>
 </div>
@@ -20,7 +19,7 @@
     <!-- Bootstrap list for categories -->
     <div class="col-md-3 mt-5">
         <div class="list-group mt-2">
-            <!-- We're looping through each category and creating a link for it -->
+            <!-- We're looping through each category and creating a link with appropriate paramenters for it -->
             @foreach (Category category in ViewBag.Categories)
             {
                 <a asp-controller="Home"
@@ -53,7 +52,7 @@
                                     All FAQs
                                 </a>
                             </li>
-                            <!-- We're looping through each topic and creating a link for it just like categories -->
+                            <!-- We're looping through each topic and creating a link for it with appropriate paramenters just like categories -->
                             @foreach (var topic in ViewBag.Topics)
                             {
                                 <li class="nav-item">

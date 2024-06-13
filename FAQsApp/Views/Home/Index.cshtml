@@ -26,7 +26,7 @@
                    aps-action="Index"
                    asp-route-activeCategory="@category.CategoryId"
                    asp-route-activeTopic="@ViewBag.ActiveTopic"
-                   class="list-group-item">
+                   class="list-group-item @Active(category.CategoryId, ViewBag.ActiveCategory)">
                     @category.Name
                 </a>
             }
@@ -44,7 +44,7 @@
                             @* We're creating a link for all FAQs with category and topic set as all *@
                             @* category and topic are equal i.e all set active class *@
                             <li class="nav-item">
-                                <a asp-asp-controller="Home"
+                                <a asp-controller="Home"
                                    asp-action="Index"
                                    asp-route-activeCategory="all"
                                    asp-route-activeTopic="all"
@@ -56,7 +56,7 @@
                             @foreach (var topic in ViewBag.Topics)
                             {
                                 <li class="nav-item">
-                                    <a asp-asp-controller="Home"
+                                    <a asp-a-controller="Home"
                                        asp-action="Index"
                                        asp-route-activeCategory="@ViewBag.ActiveCategory"
                                        asp-route-activeTopic="@topic.TopicId"

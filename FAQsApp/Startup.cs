@@ -47,11 +47,13 @@ namespace FAQsApp
 
             app.UseEndpoints(endpoints =>
             {
-                // Add custom route for filtering FAQs by category and topic
-                endpoints.MapControllerRoute(
-                    name: "custom",
-                    pattern: "{controller}/{action}/topic/{activeTopic}/category/{activeCategory}");
-                
+                //// Add custom route for filtering FAQs by category and topic
+                //endpoints.MapControllerRoute(
+                //    name: "custom",
+                //    pattern: "{controller}/{action}/topic/{activeTopic}/category/{activeCategory}");
+
+                //endpoints.MapControllers();
+
                 // This is the default route; if no other route is matched, this route is used
                 endpoints.MapControllerRoute(
                     name: "default",

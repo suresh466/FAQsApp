@@ -19,6 +19,13 @@ namespace FAQsApp.Controllers
             context = ctx;
         }
 
+
+        // attribute routes applied from most to least specific routes
+        [HttpGet]
+        [Route("topic/{activeTopic}/category/{activeCategory}")]
+        [Route("topic/{activeTopic}")]
+        [Route("category/{activeCategory}")]
+        [Route("/")]
         // Index action, with optional parameters for filtering
         public IActionResult Index(string activeCategory="all", string activeTopic="all")
         {

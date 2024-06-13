@@ -22,10 +22,11 @@
             <!-- We're looping through each category and creating a link with appropriate paramenters for it -->
             @foreach (Category category in ViewBag.Categories)
             {
+                @* only set the activeTopic parameter if it is not all, i.e it is set to a specific topic *@
                 <a asp-controller="Home"
                    aps-action="Index"
                    asp-route-activeCategory="@category.CategoryId"
-                   asp-route-activeTopic="@ViewBag.ActiveTopic"
+                   asp-route-activeTopic="@(ViewBag.ActiveTopic != "all" ? ViewBag.ActiveTopic : null)"
                    class="list-group-item @Active(category.CategoryId, ViewBag.ActiveCategory)">
                     @category.Name
                 </a>
@@ -41,24 +42,19 @@
                 <nav class="navbar navbar-expand navbar-light">
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            @* We're creating a link for all FAQs with category and topic set as all *@
-                            @* category and topic are equal i.e all set active class *@
+
+                            @* for all faqs just plainly hit the root route without any parameters *@
                             <li class="nav-item">
-                                <a asp-controller="Home"
-                                   asp-action="Index"
-                                   asp-route-activeCategory="all"
-                                   asp-route-activeTopic="all"
-                                   class="nav-link @Active(ViewBag.ActiveCategory, ViewBag.ActiveTopic)">
-                                    All FAQs
-                                </a>
+                                <a href="/" class="btn btn-info">All FAQs</a>
                             </li>
                             <!-- We're looping through each topic and creating a link for it with appropriate paramenters just like categories -->
                             @foreach (var topic in ViewBag.Topics)
                             {
+                                @* only set the activeCategory parameter if it is not all, i.e it is set to a specific category *@
                                 <li class="nav-item">
                                     <a asp-a-controller="Home"
                                        asp-action="Index"
-                                       asp-route-activeCategory="@ViewBag.ActiveCategory"
+                                       asp-route-activeCategory="@(ViewBag.ActiveCategory != "all" ? ViewBag.ActiveCategory : null)"
                                        asp-route-activeTopic="@topic.TopicId"
                                        class="nav-link @Active(topic.TopicId, ViewBag.ActiveTopic)">
                                         @topic.Name

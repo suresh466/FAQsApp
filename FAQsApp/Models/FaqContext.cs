@@ -15,20 +15,32 @@ namespace FAQsApp.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // Seed data for Categories
             modelBuilder.Entity<Category>().HasData(
-                new Category { CategoryId = "afc", Name = "AFC" },
-                new Category { CategoryId = "nfc", Name = "NFC" }
+                new Category { CategoryId = "general", Name = "General" },
+                new Category { CategoryId = "maintenance", Name = "Maintenance" },
+                new Category { CategoryId = "history", Name = "History" }
             );
+
+            // Seed data for Topics
             modelBuilder.Entity<Topic>().HasData(
-                new Topic { TopicId = "north", Name = "North" },
-                new Topic { TopicId = "south", Name = "South" },
-                new Topic { TopicId = "east", Name = "East" },
-                new Topic { TopicId = "west", Name = "West" }
+                new Topic { TopicId = "retriever", Name = "Retriever" },
+                new Topic { TopicId = "chihuahua", Name = "Chihuahua" },
+                new Topic { TopicId = "pomeranian", Name = "Pomeranian" }
             );
+
+            // Seed data for FAQs
             modelBuilder.Entity<Faq>().HasData(
-                new { Id=1, Name = "Arizona Cardinals", Question = "Question 1?", Answer = "Answer 1!", CategoryId = "nfc", TopicId = "west" },
-                new { Id=2, Name = "Atlanta Falcons", Question = "Question 2?", Answer = "Answer 2!", CategoryId = "nfc", TopicId = "south" },
-                new { Id=3, Name = "Baltimore Ravens", Question = "Question 3?", Answer = "Answer 3!", CategoryId = "afc", TopicId = "north" }
+                new { Id = 1, Question = "How intelligent are Retrievers?", Answer = "They are very intelligent..", CategoryId = "general", TopicId = "retriever" },
+                new { Id = 2, Question = "How do I maintain my Retriever?", Answer = "Regular grooming and vet check-ups are essential...", CategoryId = "maintenance", TopicId = "retriever" },
+                new { Id = 3, Question = "What is the history of the Retriever breed?", Answer = "Retrievers were originally bred as hunting dogs...", CategoryId = "history", TopicId = "retriever" },
+                new { Id = 4, Question = "How big do Chihuahuas get?", Answer = "Chihuahuas typically weigh between 2-6 pounds...", CategoryId = "general", TopicId = "chihuahua" },
+                new { Id = 5, Question = "How often should I feed my Chihuahua?", Answer = "Adult Chihuahuas should be fed 2-3 times a day...", CategoryId = "maintenance", TopicId = "chihuahua" },
+                new { Id = 6, Question = "What is the origin of the Chihuahua breed?", Answer = "Chihuahuas are believed to have originated in Mexico...", CategoryId = "history", TopicId = "chihuahua" },
+                new { Id = 7, Question = "Are Pomeranians good with kids?", Answer = "Pomeranians can be good with kids if socialized early...", CategoryId = "general", TopicId = "pomeranian" },
+                new { Id = 8, Question = "How do I groom my Pomeranian?", Answer = "Regular brushing and occasional baths are recommended...", CategoryId = "maintenance", TopicId = "pomeranian" },
+                new { Id = 9, Question = "What is the history of the Pomeranian breed?", Answer = "Pomeranians are descended from large sled dogs...", CategoryId = "history", TopicId = "pomeranian" }
             );
         }
     }

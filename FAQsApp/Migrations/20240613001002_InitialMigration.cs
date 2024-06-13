@@ -63,8 +63,9 @@ namespace FAQsApp.Migrations
                 columns: new[] { "CategoryId", "Name" },
                 values: new object[,]
                 {
-                    { "afc", "AFC" },
-                    { "nfc", "NFC" }
+                    { "general", "General" },
+                    { "maintenance", "Maintenance" },
+                    { "history", "History" }
                 });
 
             migrationBuilder.InsertData(
@@ -72,26 +73,26 @@ namespace FAQsApp.Migrations
                 columns: new[] { "TopicId", "Name" },
                 values: new object[,]
                 {
-                    { "north", "North" },
-                    { "south", "South" },
-                    { "east", "East" },
-                    { "west", "West" }
+                    { "retriever", "Retriever" },
+                    { "chihuahua", "Chihuahua" },
+                    { "pomeranian", "Pomeranian" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Faqs",
                 columns: new[] { "Id", "Answer", "CategoryId", "Question", "TopicId" },
-                values: new object[] { 3, "Answer 3!", "afc", "Question 3?", "north" });
-
-            migrationBuilder.InsertData(
-                table: "Faqs",
-                columns: new[] { "Id", "Answer", "CategoryId", "Question", "TopicId" },
-                values: new object[] { 2, "Answer 2!", "nfc", "Question 2?", "south" });
-
-            migrationBuilder.InsertData(
-                table: "Faqs",
-                columns: new[] { "Id", "Answer", "CategoryId", "Question", "TopicId" },
-                values: new object[] { 1, "Answer 1!", "nfc", "Question 1?", "west" });
+                values: new object[,]
+                {
+                    { 1, "They are very intelligent..", "general", "How intelligent are Retrievers?", "retriever" },
+                    { 2, "Regular grooming and vet check-ups are essential...", "maintenance", "How do I maintain my Retriever?", "retriever" },
+                    { 3, "Retrievers were originally bred as hunting dogs...", "history", "What is the history of the Retriever breed?", "retriever" },
+                    { 4, "Chihuahuas typically weigh between 2-6 pounds...", "general", "How big do Chihuahuas get?", "chihuahua" },
+                    { 5, "Adult Chihuahuas should be fed 2-3 times a day...", "maintenance", "How often should I feed my Chihuahua?", "chihuahua" },
+                    { 6, "Chihuahuas are believed to have originated in Mexico...", "history", "What is the origin of the Chihuahua breed?", "chihuahua" },
+                    { 7, "Pomeranians can be good with kids if socialized early...", "general", "Are Pomeranians good with kids?", "pomeranian" },
+                    { 8, "Regular brushing and occasional baths are recommended...", "maintenance", "How do I groom my Pomeranian?", "pomeranian" },
+                    { 9, "Pomeranians are descended from large sled dogs...", "history", "What is the history of the Pomeranian breed?", "pomeranian" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Faqs_CategoryId",
